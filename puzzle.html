@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>拼圖</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="border border-primary" style="width:602px;height:602px" id="puzzle"></div>
+        <button type="button" class="btn btn-secondary" id="start">開始</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script>
+        $(function () {
+            var pos = {};
+
+            for (var i = 0; i < 16; i++) {
+                $("#puzzle").append("<div class='PicCell overflow-hidden float-left border border-light' style='width:150px;height:150px;' id='Pic" + i + "'><img src='cat/cats-q-c-600-600-5.jpg' /></div>");
+                var row = parseInt(i / 4);
+                var col = i % 4;
+                $("#Pic" + i + " img").css("margin-left", col * -150 + 1).css("margin-top", row * -150 + 1);
+                pos[i] = { row: row, col: col };
+            }
+            $("#Pic0 img").hide();
+
+            function getNearPos(i) {
+                var pool = [];
+                var row = pos[i].row, col = pos[i].col;
+
+                if (row > 0) //上
+                    pool.push((row - 1) * 4 + col);
+                if (row < 4) //下
+                    pool.push((row + 1) * 4 + col);
+                if (col > 0) //左
+                    pool.push(i - 1);
+                if (col < 4) //右
+                    pool.push(i + 1);
+                return pool;
+            }
+
+            function pushPuzzle() {
+                var cells = $("#puzzle div");
+                var i = cells.index(this);
+                var toCheck = getNearPos(i);
+                console.log(toCheck);
+                while (toCheck.length > 0) {
+                    var j = toCheck.pop();
+                    if (cells.eq(j).attr("id") == "Pic0") {
+                        if (i > j) { var k = j; j = i; i = k; }
+                        var ahead = cells.eq(i);
+                        var behind = cells.eq(j);
+                        var behindPrev = behind.prev();
+
+                        if (-(i - j) == 1)
+                            behind.after(ahead);
+                        else {
+                            ahead.after(behind);
+                            behindPrev.after(ahead);
+                        }
+                        break;
+                    }
+                }
+
+                if ($("#Pic1").index() == 1
+                    && $("#Pic2").index() == 2
+                    && $("#Pic3").index() == 3
+                    && $("#Pic4").index() == 4
+                    && $("#Pic5").index() == 5
+                    && $("#Pic6").index() == 6
+                    && $("#Pic7").index() == 7
+                    && $("#Pic8").index() == 8
+                    && $("#Pic9").index() == 9
+                    && $("#Pic10").index() == 10
+                    && $("#Pic11").index() == 11
+                    && $("#Pic12").index() == 12
+                    && $("#Pic13").index() == 13
+                    && $("#Pic14").index() == 14
+                    && $("#Pic15").index() == 15) {
+                    alert("成功");
+                    $("#Pic0 img").show();
+                    $('.PicCell').off('click', pushPuzzle);
+                }
+            }
+
+            $('.PicCell').on('click', pushPuzzle);
+
+            $("#start").click(function () {
+                $("#Pic0 img").hide();
+                $('.PicCell').on('click', pushPuzzle);
+                for (var i = 0; i < 500; i++) {
+                    var cells = $("#puzzle div:not(.last)");
+                    $("#puzzle div.last").removeClass("last");
+                    //找出空格所在位置，並取得其相鄰圖塊
+                    var toMove = getNearPos(cells.index($("#Pic0")[0]));
+                    console.log(toMove);
+                    cells.eq(toMove[ //由空格的相鄰圖塊擇一挪動
+                        parseInt(Math.random() * toMove.length)
+                    ]).addClass("last").click();
+                }
+                $("#puzzle div.last").removeClass("last");
+
+            });
+        });
+    </script>
+</body>
+
+</html>

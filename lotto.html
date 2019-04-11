@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" 
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <title>抽獎</title>
+    <style>
+        #number-display {
+            position: relative;
+            width:250px;
+            height:350px;
+            overflow: hidden;
+        }
+        .showNumber {
+            display: block;
+            width: 250px;
+            position: absolute;
+            line-height: 350px;
+            text-align: center;
+            font-size: 100px;
+            left: 250px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-around mt-3">
+            <div class="col-3">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">最小號碼 : </span>
+                    </div>
+                    <input type="number" class="form-control" id="min-number">
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">最大號碼 : </span>
+                    </div>
+                    <input type="number" class="form-control" id="max-number">
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <span>已猜數字 : <span id="already-get-number"></span></span>
+        </div>
+        <div class="row justify-content-center mt-3">
+            <div class="text-center border border-primary" id="number-display">
+                <h1 class="showNumber"></h1>
+                <h1 class="showNumber"></h1>
+                <h1 class="showNumber"></h1>
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <button type="button" class="btn btn-secondary" id="start">開始</button>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>已抽取完畢!</p>
+                      <p>是否重新輸入</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="replay">是</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script
+        src="https://code.jquery.com/jquery-3.4.0.min.js"
+        integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script>
+        $(function() {
+            var alength = 0;
+            var randomarray = [];
+            var alreadyArray = [];
+
+            function Start(){
+                var $min = parseInt($("#min-number").val());
+                var $max = parseInt($("#max-number").val());
+
+                if(isNaN($min) | isNaN($max)) {
+                    alert("請輸入最小值和最大值");
+                }
+                else {
+                    if($max - $min <= 0){
+                        alert("最大值應大於最小值");
+                    }
+                    else{
+                        alength = $max - $min + 1;
+                        console.log(alength);
+                        randomarray = getRandomArray($min, $max, alength);
+                        console.log(randomarray);
+                        alreadyArray[alreadyArray.length] = randomarray[randomarray.length - 1];
+                        test();
+                    }
+                }
+            }
+
+            function getRandom(min,max){
+                return Math.floor(Math.random()*(max-min+1))+min;
+            };
+
+            function getRandomArray(min, max, length) {
+                var array = [];
+ 
+	            for(var i=0; i<length; i++) {
+		            var rdm = 0;
+ 
+		            do {
+			            var exist = false;
+			            rdm = getRandom(min, max);
+
+			            if(array.indexOf(rdm) != -1) exist = true; 
+		            } while (exist);
+		            array[i] = rdm;
+	            }
+	            return array;
+            }
+
+            function getNumber(){
+                if(randomarray.length == 0) {
+                    if(alreadyArray.length == 0){
+                        Start();
+                    }
+                    else {
+                        $("#start").attr("data-toggle", "modal");
+                        $("#start").attr("data-target", "#exampleModal");
+                    }
+                }
+                else {
+                    alreadyArray[alreadyArray.length] = randomarray[randomarray.length - 1];
+                    test();
+                    console.log(alreadyArray);
+                }
+            }
+            var n = 0;
+            var time = 0;
+            function test() {
+                var a = setInterval(function () {
+                    if (time>=4500) {
+                        clearInterval(a);
+                        $($('.showNumber')[n % 3]).text(alreadyArray[alreadyArray.length-1]);
+                        $($('.showNumber')[n % 3]).finish();
+                        $($('.showNumber')[n % 3]).css("left", "250px");
+                        $($('.showNumber')[n % 3]).animate({ left: "0px" }, 300, "linear");
+                        randomarray.pop();
+                        n = 0;
+                        time = 0;
+                        $("#already-get-number").text(alreadyArray.join(","));
+                    }
+                    else {
+                        $($('.showNumber')[n % 3]).text(randomarray[n % randomarray.length]);
+                        $($('.showNumber')[n % 3]).finish();
+                        $($('.showNumber')[n % 3]).css("left", "250px");
+                        $($('.showNumber')[n % 3]).animate({ left: "-250px" }, 600, "linear");
+                        n++;
+                        time=time+300;
+                    }
+                }, 300);
+            };
+
+            function replay() {
+                $("#start").removeAttr("data-toggle");
+                $("#start").removeAttr("data-target");
+                alength = 0;
+                randomarray = [];
+                alreadyArray = [];
+                $("#already-get-number").text("");
+            }
+            $("#replay").on('click', replay);
+            $("#start").on('click', getNumber);
+        });
+    </script>
+</body>
+
+</html>
