@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" 
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        img {
+            width: 50px;
+            height: 50px;
+        }
+
+        span {
+            font-size: 20px;
+        }
+
+        a {
+            display: inline-block;
+        }
+
+        .background {
+            background: rgb(252, 186, 4,0.3);
+        }
+
+        .img-responsive {
+            border: none;
+            transition: all .3s;
+        }
+
+        .img-responsive.active {
+            outline: solid 5px  rgb(252, 186, 4);;
+            box-shadow: 0 0 20px  rgb(252, 186, 4);;
+            transition: all 0s;
+        }
+
+        .size {
+            width: 50px;
+            height: 50px;
+        }
+
+        .tpadding td {
+            padding: 3px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 background">
+                <div class="row justify-content-around mt-3">
+                    <div class="input-group input-group-lg col-6">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-lg">中獎金額</span>
+                        </div>
+                        <input type="text" class="form-control text-right" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-lg" id="getMoney" value="0" readonly>
+                    </div>
+                    <div class="input-group input-group-lg col-6">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-lg">總金額</span>
+                        </div>
+                        <input type="text" class="form-control text-right" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-lg" id="totalMoney" value="0" readonly>
+                    </div>
+                </div>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td class="border-0"><div><img id="i1" src="cat/sticker@2x.png" alt="假圖"></div></td>
+                            <td class="border-0"><div><img id="i2" src="cat/sticker@2x (1).png" alt="假圖"></div></td>
+                            <td class="border-0"><div><img id="i3" src="cat/sticker@2x (2).png" alt="假圖"></div></td>
+                            <td class="border-0"><div><img id="i4" src="cat/sticker@2x (3).png" alt="假圖"></div></td>
+                            <td class="border-0"><div><img id="i5" src="cat/sticker@2x (4).png" alt="假圖"></div></td>
+                            <td class="border-0"><div><img id="i6" src="cat/sticker@2x (5).png" alt="假圖"></div></td>
+                            <td class="border-0"><div><img id="i7" src="cat/sticker@2x (6).png" alt="假圖"></div></td>
+                        </tr>
+                        <tr>
+                            <td class="border-0"><div><img id="i24" src="cat/sticker@2x (6).png" alt="假圖"></div></td>
+                            <td colspan="5" class="border-0">
+                                <div class="text-center">
+                                    <img src="cat/sticker@2x.png" alt="假圖"><span>倍率 : 10</span>
+                                    <img class="ml-3" src="cat/sticker@2x (2).png" alt="假圖"><span>倍率 : 3</span>
+                                </div>
+                            </td>
+                            <td class="border-0"><div><img id="i8" src="cat/sticker@2x (4).png" alt="假圖"></div></td>
+                        </tr>
+                        <tr>
+                            <td class="border-0"><div><img id="i23" src="cat/sticker@2x (5).png" alt="假圖"></div></td>
+                            <td colspan="5" class="border-0">
+                                <div class="text-center">
+                                    <img src="cat/sticker@2x (1).png" alt="假圖"><span>倍率 : 4</span>
+                                    <img class="ml-3" src="cat/sticker@2x (4).png" alt="假圖"><span>倍率 : 5</span>
+                                </div>
+                            </td>
+                            <td class="border-0"><div><img id="i9" src="cat/sticker@2x.png" alt="假圖"></div></td>
+                        </tr>
+                        <tr>
+                            <td class="border-0"><div><img id="i22" src="cat/sticker@2x (3).png" alt="假圖"></div></td>
+                            <td colspan="5" class="border-0">
+                                <div class="text-center">
+                                    <img src="cat/sticker@2x (5).png" alt="假圖"><span>倍率 : 6</span>
+                                    <img class="ml-3" src="cat/sticker@2x (6).png" alt="假圖"><span>倍率 : 2</span>
+                                </div>
+                            </td>
+                            <td class="border-0"><div><img id="i10" src="cat/sticker@2x (1).png" alt="假圖"></div></td>
+                        </tr>
+                        <tr>
+                            <td class="border-0"><div><img id="i21" src="cat/sticker@2x.png" alt="假圖"></div></td>
+                            <td colspan="5" class="border-0">
+                                <div class="text-center">
+                                    <img src="cat/sticker@2x (3).png" alt="假圖"><span>倍率 : -5</span>
+                                </div>
+                            </td>
+                            <td class="border-0"><div><img id="i11" src="cat/sticker@2x (6).png" alt="假圖"></div></td>
+                        </tr>
+                        <tr>
+                            <td class="border-0"><div><img id="i20" src="cat/sticker@2x (2).png" alt="假圖"></div></td>
+                            <td colspan="5" class="border-0"></td>
+                            <td class="border-0"><div><img id="i12" src="cat/sticker@2x (3).png" alt="假圖"></div></td>
+                        </tr>
+                        <tr>
+                            <td class="border-0"><div><img id="i19" src="cat/sticker@2x (1).png" alt="假圖"></div></td>
+                            <td class="border-0"><div><img id="i18" src="cat/sticker@2x (4).png" alt="假圖"></div></td>
+                            <td class="border-0"><div><img id="i17" src="cat/sticker@2x (2).png" alt="假圖"></div></td>
+                            <td class="border-0"><div><img id="i16" src="cat/sticker@2x.png" alt="假圖"></div></td>
+                            <td class="border-0"><div><img id="i15" src="cat/sticker@2x (3).png" alt="假圖"></div></td>
+                            <td class="border-0"><div><img id="i14" src="cat/sticker@2x (5).png" alt="假圖"></div></td>
+                            <td class="border-0"><div><img id="i13" src="cat/sticker@2x (1).png" alt="假圖"></div></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table">
+                    <tbody class="tpadding">
+                        <tr>
+                            <td><input class="text-right size form-control" type="text" id="first-span" value="0" readonly></td>
+                            <td><input class="text-right size form-control" type="text" id="second-span" value="0" readonly></td>
+                            <td><input class="text-right size form-control" type="text" id="third-span" value="0" readonly></td>
+                            <td><input class="text-right size form-control" type="text" id="four-span" value="0" readonly></td>
+                            <td><input class="text-right size form-control" type="text" id="five-span" value="0" readonly></td>
+                            <td><input class="text-right size form-control" type="text" id="six-span" value="0" readonly></td>
+                            <td><input class="text-right size form-control" type="text" id="seven-span" value="0" readonly></td>
+                            <td><button type="button" class="btn btn-warning btn-lg btn-block" id="start"><i class="fas fa-power-off"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#" id="first" data-target="first-span"><img src="cat/sticker@2x.png" alt="假圖"></a></td>
+                            <td><a href="#" id="second" data-target="second-span"><img src="cat/sticker@2x (1).png" alt="假圖"></a></td>
+                            <td><a href="#" id="third" data-target="third-span"><img src="cat/sticker@2x (2).png" alt="假圖"></a></td>
+                            <td><a href="#" id="four" data-target="four-span"><img src="cat/sticker@2x (3).png" alt="假圖"></a></td>
+                            <td><a href="#" id="five" data-target="five-span"><img src="cat/sticker@2x (4).png" alt="假圖"></a></td>
+                            <td><a href="#" id="six" data-target="six-span"><img src="cat/sticker@2x (5).png" alt="假圖"></a></td>
+                            <td><a href="#" id="seven" data-target="seven-span"><img src="cat/sticker@2x (6).png" alt="假圖"></a></td>
+                            <td><button type="button" class="btn btn-warning btn-lg btn-block" id="go"><i class="fas fa-hand-paper"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        var bricks = [];
+        var currentBrick = 0;
+        var forwardSteps = 0;
+        var current = 0;
+        var forward = 0;
+
+        var money = document.getElementById("totalMoney");
+
+        var firstInput = document.getElementById("first-span");
+        var secondInput = document.getElementById("second-span");
+        var thirdInput = document.getElementById("third-span");
+        var fourInput = document.getElementById("four-span");
+        var fiveInput = document.getElementById("five-span");
+        var sixInput = document.getElementById("six-span");
+        var sevenInput = document.getElementById("seven-span");
+        var winMoney = document.getElementById("getMoney");
+
+        var n = 0;
+        var rate = 10;
+
+        while (true) {
+            ++n;
+            var brick = document.getElementById("i" + n);
+
+            if (!brick) {
+                break;
+            }
+            bricks.push(brick);
+        }
+
+        function degree(deg) {
+            return deg * Math.PI / 180;
+        }
+
+        function forwardBrick() {
+            bricks[currentBrick].className = "img-responsive";
+
+            currentBrick++;
+            forwardSteps--;
+            current += forward;
+
+            if (currentBrick >= bricks.length) {
+                currentBrick = 0;
+            }
+
+            bricks[currentBrick].className = "img-responsive active";
+
+            if (forwardSteps > 0) {
+                var rad = degree(current - 90);
+                var a = Math.abs(Math.tan(rad));
+                var speed = Math.max(10, Math.min(250, 30 * a));
+                setTimeout(forwardBrick, speed);
+            }
+            else // setTimeout 結束之後的動作執行
+            {
+                console.log(currentBrick);
+                if (currentBrick == 0 | currentBrick == 15 | currentBrick == 20 | currentBrick == 8) {
+                    winMoney.value = parseInt(firstInput.value) * rate * 10;
+                }
+                else if (currentBrick == 1 | currentBrick == 9 | currentBrick == 12 | currentBrick == 18) {
+                    winMoney.value = parseInt(secondInput.value) * rate * 4;
+                }
+                else if (currentBrick == 2 | currentBrick == 19 | currentBrick == 16) {
+                    winMoney.value = parseInt(thirdInput.value) * rate * 3;
+                }
+                else if (currentBrick == 3 | currentBrick == 11 | currentBrick == 14 | currentBrick == 21) {
+                    winMoney.value = parseInt(fourInput.value) * rate * (-5);
+                }
+                else if (currentBrick == 4 | currentBrick == 7 | currentBrick == 17) {
+                    winMoney.value = parseInt(fiveInput.value) * rate * 6;
+                }
+                else if (currentBrick == 5 | currentBrick == 13 | currentBrick == 22) {
+                    winMoney.value = parseInt(sixInput.value) * rate * 2;
+                }
+                else if (currentBrick == 6 | currentBrick == 10 | currentBrick == 23) {
+                    winMoney.value = parseInt(sevenInput.value) * rate * 7;
+                }
+
+                money.value = parseInt(money.value) + parseInt(winMoney.value);
+                Clear();
+            }
+        }
+
+        function Start() {
+            forwardSteps = (bricks.length * 5);
+            forwardSteps += Math.floor(Math.random() * bricks.length);
+
+            forward = 180 / forwardSteps;
+            current = 0;
+
+            setTimeout(forwardBrick, 50)
+            //forwardBrick();
+        }
+
+        function FirstStart() {
+            money.value = 5000;
+            Clear();
+        }
+
+        function First() {
+            var tid = this.attributes["data-target"];
+            var block = document.getElementById(tid.value);
+
+            if (parseInt(money.value) <= 0) {
+                alert("You don't have money.");
+            }
+            else {
+                block.value = parseInt(block.value) + 1;
+                money.value = parseInt(money.value) - rate;
+            }
+        }
+
+        function Clear() {
+            firstInput.value = 0;
+            secondInput.value = 0;
+            thirdInput.value = 0;
+            fourInput.value = 0;
+            fiveInput.value = 0;
+            sixInput.value = 0;
+            sevenInput.value = 0;
+        }
+
+        document.getElementById("go").onclick = Start;
+        document.getElementById("first").onclick = First;
+        document.getElementById("second").onclick = First;
+        document.getElementById("third").onclick = First;
+        document.getElementById("four").onclick = First;
+        document.getElementById("five").onclick = First;
+        document.getElementById("six").onclick = First;
+        document.getElementById("seven").onclick = First;
+        document.getElementById("start").onclick = FirstStart;
+    </script>
+
+</body>
+
+</html>
